@@ -1,0 +1,7076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Steven Salim | CV & Portfolio</title>
+
+    <style>
+        :root {
+            --primary: #0068c9;
+            --primary-dark: #004d98;
+            --primary-light: #087ed4;
+            --accent: #070e7a;
+            --text: #222222;
+            --muted: #666666;
+            --border: #dddddd;
+            --white: #ffffff;
+            --light: #f4f7fb;
+            --danger: #c62828;
+            --success: #197d3c;
+
+            --sidebar-width: 245px;
+            --content-width: 1100px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background:
+                linear-gradient(rgba(255,255,255,.80), rgba(255,255,255,.80)),
+                linear-gradient(135deg, #eef6ff, #ffffff);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body.has-main-background {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        /* =========================================================
+           MOBILE PORTRAIT WARNING
+        ========================================================= */
+
+        .rotate-screen {
+            display: none;
+        }
+
+        @media (max-width: 800px) and (orientation: portrait) {
+            .rotate-screen {
+                position: fixed;
+                inset: 0;
+                z-index: 99999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 30px;
+                background: #0b4f91;
+                color: white;
+            }
+
+            .rotate-box {
+                max-width: 450px;
+            }
+
+            .rotate-icon {
+                font-size: 55px;
+                margin-bottom: 20px;
+            }
+
+            .rotate-box h2 {
+                margin-bottom: 12px;
+            }
+
+            .rotate-box p {
+                line-height: 1.6;
+                opacity: .9;
+            }
+        }
+
+        /* =========================================================
+           APP LAYOUT
+        ========================================================= */
+
+        .app {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* =========================================================
+           SIDEBAR
+        ========================================================= */
+
+        .sidebar {
+            width: var(--sidebar-width);
+            min-height: 100vh;
+            background:
+                linear-gradient(180deg,
+                rgba(0, 132, 230, .97),
+                rgba(0, 74, 158, .98));
+            color: white;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1000;
+            padding: 28px 0 22px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 5px 0 20px rgba(0,0,0,.10);
+        }
+
+        body.has-menu-background .sidebar {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .sidebar-logo {
+            padding: 0 22px 26px;
+        }
+
+        .sidebar-logo .small {
+            font-size: 11px;
+            opacity: .85;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .sidebar-logo .name {
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .nav-button {
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 20px;
+            font-weight: 800;
+            font-size: 15px;
+            transition: .2s ease;
+        }
+
+        .nav-button:hover {
+            background: rgba(255,255,255,.13);
+        }
+
+        .nav-button.active {
+            background: rgba(0, 53, 133, .75);
+            box-shadow: inset 4px 0 0 white;
+        }
+
+        .nav-icon {
+            width: 25px;
+            height: 25px;
+            border: 2px solid rgba(255,255,255,.9);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 20px;
+        }
+
+        .admin-toggle {
+            border: none;
+            background: rgba(0,0,0,.15);
+            color: white;
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 800;
+            text-align: left;
+        }
+
+        .admin-toggle:hover {
+            background: rgba(0,0,0,.25);
+        }
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .main {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 26px 26px 60px;
+        }
+
+        .content {
+            width: min(100%, var(--content-width));
+            margin: 0 auto;
+            background: rgba(255,255,255,.94);
+            border-radius: 5px;
+            padding: 22px 30px 50px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.06);
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* =========================================================
+           CV
+        ========================================================= */
+
+        .cv-title {
+            color: var(--accent);
+            font-size: clamp(34px, 4vw, 55px);
+            font-weight: 900;
+            margin-bottom: 14px;
+            line-height: 1;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin: 24px 0 8px;
+            font-weight: 900;
+            border-bottom: 1px solid #8d51aa;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .profile-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .profile-image-wrap {
+            width: 112px;
+            height: 112px;
+            flex: 0 0 112px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #e9f0f5;
+        }
+
+        .profile-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text {
+            line-height: 1.55;
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        .cv-entry {
+            margin: 12px 0 15px;
+        }
+
+        .cv-entry-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .cv-entry-title {
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        .cv-entry-date {
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .cv-entry ul {
+            padding-left: 19px;
+            margin-top: 6px;
+        }
+
+        .cv-entry li {
+            margin-bottom: 4px;
+            line-height: 1.43;
+            font-size: 13px;
+        }
+
+        .education-card {
+            margin: 10px 0;
+            line-height: 1.55;
+            font-size: 13px;
+        }
+
+        .skills-group {
+            margin: 11px 0;
+        }
+
+        .skills-group h4 {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .skill-pill {
+            border: 1px solid #cfd5db;
+            border-radius: 6px;
+            padding: 6px 10px;
+            background: #fafafa;
+            font-size: 12px;
+        }
+
+        .skill-pill span {
+            color: #4c4c4c;
+            margin-left: 5px;
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           PORTFOLIO
+        ========================================================= */
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .project-card {
+            border: 1px solid #dde3ea;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(0,0,0,.05);
+            transition: .2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.10);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            background: #ecf1f7;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-body {
+            padding: 17px;
+        }
+
+        .project-category {
+            display: inline-block;
+            font-size: 11px;
+            background: #edf5ff;
+            color: #045ba7;
+            padding: 4px 8px;
+            border-radius: 999px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .project-title {
+            font-size: 19px;
+            margin-bottom: 6px;
+        }
+
+        .project-date {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .project-body h4 {
+            margin: 10px 0 4px;
+            font-size: 13px;
+        }
+
+        .project-body p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .tag-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 7px;
+        }
+
+        .tag {
+            background: #f4f6f8;
+            border-radius: 5px;
+            padding: 5px 8px;
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           CERTIFICATION
+        ========================================================= */
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .cert-card {
+            border: 1px solid #dde3ea;
+            border-radius: 10px;
+            background: white;
+            overflow: hidden;
+        }
+
+        .cert-image {
+            height: 220px;
+            background: #f0f3f7;
+        }
+
+        .cert-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .cert-body {
+            padding: 14px;
+        }
+
+        .cert-body h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .cert-body p {
+            font-size: 13px;
+            color: #555;
+        }
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+
+        .contact-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .contact-card {
+            background: white;
+            border: 1px solid #dde3ea;
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .contact-card strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contact-card a {
+            color: #075fb1;
+            word-break: break-word;
+            text-decoration: none;
+        }
+
+        /* =========================================================
+           ADMIN
+        ========================================================= */
+
+        .admin-panel {
+            display: none;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .public-panel.hidden {
+            display: none;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #0b68ba, #074287);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .admin-header h2 {
+            margin-bottom: 6px;
+        }
+
+        .admin-header p {
+            opacity: .88;
+            font-size: 13px;
+        }
+
+        .admin-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 18px;
+        }
+
+        .admin-tab {
+            border: 1px solid #ccd4dd;
+            background: white;
+            padding: 9px 13px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .admin-tab.active {
+            background: #0968ba;
+            border-color: #0968ba;
+            color: white;
+        }
+
+        .admin-section {
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .admin-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .admin-toolbar h3 {
+            font-size: 19px;
+        }
+
+        .admin-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .admin-item {
+            border: 1px solid #dbe2e8;
+            background: white;
+            border-radius: 9px;
+            padding: 13px;
+        }
+
+        .admin-item-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .admin-item h4 {
+            margin-bottom: 4px;
+        }
+
+        .admin-item small {
+            color: #777;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 7px;
+            padding: 9px 13px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .btn-primary {
+            background: #0968ba;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #e9eff5;
+            color: #17344e;
+        }
+
+        .btn-danger {
+            background: #d73535;
+            color: white;
+        }
+
+        .btn-success {
+            background: #197d3c;
+            color: white;
+        }
+
+        .btn:hover {
+            filter: brightness(.95);
+        }
+
+        .empty-state {
+            border: 1px dashed #bbc7d3;
+            padding: 24px;
+            text-align: center;
+            color: #777;
+            border-radius: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 11px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            border: 1px solid #cbd5de;
+            border-radius: 7px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #086bbd;
+            box-shadow: 0 0 0 3px rgba(8,107,189,.10);
+        }
+
+        .inline-list {
+            display: grid;
+            gap: 7px;
+        }
+
+        .inline-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 7px;
+        }
+
+        /* =========================================================
+           LOGIN
+        ========================================================= */
+
+        .login-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 21, 36, .72);
+            backdrop-filter: blur(6px);
+            z-index: 5000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-overlay.active {
+            display: flex;
+        }
+
+        .login-card {
+            width: min(430px, 100%);
+            background: white;
+            border-radius: 14px;
+            padding: 26px;
+            box-shadow: 0 25px 80px rgba(0,0,0,.30);
+        }
+
+        .login-card h2 {
+            margin-bottom: 7px;
+        }
+
+        .login-card p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .login-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .login-error {
+            color: #b62222;
+            font-size: 12px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.55);
+            z-index: 4500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-card {
+            width: min(800px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .modal-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .modal-close {
+            border: none;
+            background: #edf1f4;
+            width: 33px;
+            height: 33px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 900;
+        }
+
+        .modal-footer {
+            margin-top: 15px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .preview-image {
+            max-width: 180px;
+            max-height: 150px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: none;
+            margin-top: 7px;
+        }
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        .toast {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 7000;
+            background: #1d252d;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 10px 35px rgba(0,0,0,.2);
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: .25s ease;
+            font-size: 13px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: #197d3c;
+        }
+
+        .toast.error {
+            background: #b82727;
+        }
+
+        /* =========================================================
+           PRINT / PDF
+        ========================================================= */
+
+        @page {
+            size: A4;
+            margin: 12mm;
+        }
+
+        @media print {
+
+            .rotate-screen {
+                display: none !important;
+            }
+
+            body,
+            body.has-main-background {
+                background: white !important;
+            }
+
+            .sidebar,
+            .admin-panel,
+            .toast,
+            .login-overlay,
+            .modal,
+            .no-print {
+                display: none !important;
+            }
+
+            .app,
+            .main {
+                display: block;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .content {
+                width: 100%;
+                max-width: none;
+                padding: 0;
+                box-shadow: none;
+                background: white;
+            }
+
+            .public-panel {
+                display: block !important;
+            }
+
+            .page-section {
+                display: none !important;
+            }
+
+            #cvPage {
+                display: block !important;
+            }
+
+            .cv-title {
+                font-size: 29px;
+            }
+
+            .section-title {
+                font-size: 15px;
+                margin-top: 16px;
+            }
+
+            .about-text,
+            .cv-entry li,
+            .education-card,
+            .skill-pill {
+                font-size: 10px;
+            }
+
+            .cv-entry-title,
+            .cv-entry-date {
+                font-size: 10px;
+            }
+
+            .profile-image-wrap {
+                width: 82px;
+                height: 82px;
+                flex-basis: 82px;
+            }
+
+            .cv-entry,
+            .education-card,
+            .skills-group {
+                break-inside: avoid;
+            }
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            :root {
+                --sidebar-width: 205px;
+            }
+
+            .portfolio-grid,
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 800px) and (orientation: landscape) {
+
+            :root {
+                --sidebar-width: 180px;
+            }
+
+            .sidebar-logo .name {
+                font-size: 18px;
+            }
+
+            .nav-button {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+
+            .main {
+                padding: 15px;
+            }
+
+            .content {
+                padding: 18px;
+            }
+
+            .contact-box {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =============================================================
+     MOBILE ROTATION MESSAGE
+============================================================== -->
+
+<div class="rotate-screen">
+    <div class="rotate-box">
+        <div class="rotate-icon">↻</div>
+        <h2>Please Rotate Your Device</h2>
+        <p>
+            This portfolio is designed for desktop and landscape
+            mobile viewing. Please rotate your phone horizontally.
+        </p>
+    </div>
+</div>
+
+
+<!-- =============================================================
+     LOGIN
+============================================================== -->
+
+<div id="loginOverlay" class="login-overlay">
+
+    <div class="login-card">
+
+        <h2>Admin Login</h2>
+
+        <p>
+            Sign in to manage the CV, portfolio, certifications,
+            skills, profile and website appearance.
+        </p>
+
+        <div class="form-group">
+            <label>Username</label>
+            <input
+                id="loginUsername"
+                type="text"
+                placeholder="Enter username"
+                autocomplete="username"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+            >
+        </div>
+
+        <div id="loginError" class="login-error"></div>
+
+        <div class="login-actions">
+            <button class="btn btn-secondary" onclick="closeLogin()">
+                Cancel
+            </button>
+
+            <button class="btn btn-primary" onclick="adminLogin()">
+                Login
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     MODAL
+============================================================== -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-card">
+
+        <div class="modal-head">
+            <h3 id="modalTitle">Edit</h3>
+
+            <button
+                class="modal-close"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+        </div>
+
+        <div id="modalBody"></div>
+
+        <div class="modal-footer">
+
+            <button
+                class="btn btn-secondary"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="btn btn-primary"
+                id="modalSaveButton"
+            >
+                Save
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     APP
+============================================================== -->
+
+<div class="app">
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="small">
+                STEVEN SALIM
+            </div>
+
+            <div class="name">
+                PORTFOLIO
+            </div>
+
+        </div>
+
+
+        <nav class="nav">
+
+            <button
+                class="nav-button active"
+                data-page="cvPage"
+                onclick="showPage('cvPage', this)"
+            >
+                <span class="nav-icon">🛈</span>
+                <span>CURRICULUM VITAE (CV)</span>
+            </button>
+
+
+            <button
+                class="nav-button"
+                data-page="projectPage"
+                onclick="showPage('projectPage', this)"
+            >
+                <span class="nav-icon">🛠</span>
+                <span>PROJECT PORTFOLIO</span>
+            </button>
+
+
+            <button
+                class="nav-button"
+                data-page="certificationPage"
+                onclick="showPage('certificationPage', this)"
+            >
+                <span class="nav-icon">🎖</span>
+                <span>CERTIFICATION</span>
+            </button>
+
+
+            <button
+                class="nav-button"
+                data-page="contactPage"
+                onclick="showPage('contactPage', this)"
+            >
+                <span class="nav-icon">🗪</span>
+                <span>CONTACT</span>
+            </button>
+
+
+            <button
+                class="nav-button"
+                onclick="downloadCV()"
+            >
+                <span class="nav-icon">➜]</span>
+                <span>DOWNLOAD CV</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="admin-toggle"
+                onclick="openAdminOrLogin()"
+            >
+                ⚙ EDIT
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main class="main">
+
+        <div class="content">
+
+            <!-- =================================================
+                 PUBLIC WEBSITE
+            ================================================== -->
+
+            <div id="publicPanel" class="public-panel">
+
+
+                <!-- =============================================
+                     CV PAGE
+                ============================================== -->
+
+                <section
+                    id="cvPage"
+                    class="page-section active"
+                >
+
+                    <div class="cv-title">
+                        CURRICULUM VITAE (CV)
+                    </div>
+
+
+                    <!-- ABOUT ME -->
+
+                    <div class="section-title">
+                        ABOUT ME
+                    </div>
+
+                    <div class="profile-row">
+
+                        <div class="profile-image-wrap">
+
+                            <img
+                                id="publicProfileImage"
+                                src=""
+                                alt="Profile"
+                            >
+
+                        </div>
+
+                        <div
+                            id="publicAbout"
+                            class="about-text"
+                        >
+                            Loading profile...
+                        </div>
+
+                    </div>
+
+
+                    <!-- WORK -->
+
+                    <div class="section-title">
+                        WORKING AND INTERNSHIP EXPERIENCE
+                    </div>
+
+                    <div id="publicWork"></div>
+
+
+                    <!-- ORGANIZATION -->
+
+                    <div class="section-title">
+                        ORGANIZATION EXPERIENCE
+                    </div>
+
+                    <div id="publicOrganization"></div>
+
+
+                    <!-- EDUCATION -->
+
+                    <div class="section-title">
+                        EDUCATION
+                    </div>
+
+                    <div id="publicEducation"></div>
+
+
+                    <!-- SKILLS -->
+
+                    <div class="section-title">
+                        SKILLS
+                    </div>
+
+                    <div id="publicSkills"></div>
+
+
+                </section>
+
+
+                <!-- =============================================
+                     PROJECT PAGE
+                ============================================== -->
+
+                <section
+                    id="projectPage"
+                    class="page-section"
+                >
+
+                    <div class="cv-title">
+                        PROJECT PORTFOLIO
+                    </div>
+
+                    <p class="about-text">
+                        Selected academic, engineering, robotics,
+                        automation, software, and research projects.
+                    </p>
+
+                    <div
+                        id="publicProjects"
+                        class="portfolio-grid"
+                    ></div>
+
+                </section>
+
+
+                <!-- =============================================
+                     CERTIFICATION
+                ============================================== -->
+
+                <section
+                    id="certificationPage"
+                    class="page-section"
+                >
+
+                    <div class="cv-title">
+                        CERTIFICATION
+                    </div>
+
+                    <div
+                        id="publicCertifications"
+                        class="cert-grid"
+                    ></div>
+
+                </section>
+
+
+                <!-- =============================================
+                     CONTACT / SOCIAL
+                ============================================== -->
+
+                <section
+                    id="contactPage"
+                    class="page-section"
+                >
+
+                    <div class="cv-title">
+                        CONTACT
+                    </div>
+
+                    <div class="contact-box">
+
+                        <div class="contact-card">
+
+                            <strong>Name</strong>
+
+                            <span id="contactName">
+                                Steven Salim
+                            </span>
+
+                        </div>
+
+
+                        <div class="contact-card">
+
+                            <strong>Location</strong>
+
+                            <span id="contactLocation">
+                                -
+                            </span>
+
+                        </div>
+
+
+                        <div class="contact-card">
+
+                            <strong>Email</strong>
+
+                            <a
+                                id="contactEmail"
+                                href="#"
+                            >
+                                -
+                            </a>
+
+                        </div>
+
+
+                        <div class="contact-card">
+
+                            <strong>Phone</strong>
+
+                            <a
+                                id="contactPhone"
+                                href="#"
+                            >
+                                -
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="section-title">
+                        SOCIAL MEDIA
+                    </div>
+
+                    <div
+                        id="publicSocialMedia"
+                        class="contact-box"
+                    ></div>
+
+                </section>
+
+            </div>
+
+
+            <!-- =================================================
+                 ADMIN PANEL
+            ================================================== -->
+
+            <div id="adminPanel" class="admin-panel">
+
+                <div class="admin-header">
+
+                    <h2>
+                        Admin Dashboard
+                    </h2>
+
+                    <p>
+                        Manage your CV, portfolio, certifications,
+                        skills and website appearance.
+                    </p>
+
+                </div>
+
+
+                <div class="admin-tabs">
+
+                    <button
+                        class="admin-tab active"
+                        onclick="showAdminSection('profileAdmin', this)"
+                    >
+                        Profile
+                    </button>
+
+                    <button
+                        class="admin-tab"
+                        onclick="showAdminSection('workAdmin', this)"
+                    >
+                        Work
+                    </button>
+
+                    <button
+                        class="admin-tab"
+                        onclick="showAdminSection('organizationAdmin', this)"
+                    >
+                        Organization
+                    </button>
+
+                    <button
+                        class="admin-tab"
+                        onclick="showAdminSection('educationAdmin', this)"
+                    >
+                        Education
+                    </button>
+
+                    <button
+                        class="admin-tab"
+                        onclick="showAdminSection('certAdmin', this)"
+                    >
+                        Certification
+                    </button>
+
+                    <button
+                        class="admin-tab"
+                        onclick="showAdminSection('skillsAdmin', this)"
+                    >
+                        Skills
+                    </button>
+
+                    <button
+                        class="admin-tab"
+                        onclick="showAdminSection('projectsAdmin', this)"
+                    >
+                        Projects
+                    </button>
+
+                    <button
+                        class="admin-tab"
+                        onclick="showAdminSection('socialAdmin', this)"
+                    >
+                        Social Media
+                    </button>
+
+                    <button
+                        class="admin-tab"
+                        onclick="showAdminSection('settingsAdmin', this)"
+                    >
+                        Website
+                    </button>
+
+                    <button
+                        class="admin-tab"
+                        onclick="logoutAdmin()"
+                    >
+                        Logout
+                    </button>
+
+                </div>
+
+
+                <!-- =============================================
+                     PROFILE
+                ============================================== -->
+
+                <div
+                    id="profileAdmin"
+                    class="admin-section active"
+                >
+
+                    <div class="admin-toolbar">
+
+                        <h3>
+                            Profile
+                        </h3>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="editProfile()"
+                        >
+                            Edit Profile
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="profileAdminPreview"
+                        class="admin-item"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     WORK
+                ============================================== -->
+
+                <div
+                    id="workAdmin"
+                    class="admin-section"
+                >
+
+                    <div class="admin-toolbar">
+
+                        <h3>
+                            Work & Internship Experience
+                        </h3>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="addWork()"
+                        >
+                            + Add
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="workAdminList"
+                        class="admin-list"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     ORGANIZATION
+                ============================================== -->
+
+                <div
+                    id="organizationAdmin"
+                    class="admin-section"
+                >
+
+                    <div class="admin-toolbar">
+
+                        <h3>
+                            Organization Experience
+                        </h3>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="addOrganization()"
+                        >
+                            + Add
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="organizationAdminList"
+                        class="admin-list"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     EDUCATION
+                ============================================== -->
+
+                <div
+                    id="educationAdmin"
+                    class="admin-section"
+                >
+
+                    <div class="admin-toolbar">
+
+                        <h3>
+                            Education
+                        </h3>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="addEducation()"
+                        >
+                            + Add
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="educationAdminList"
+                        class="admin-list"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     CERTIFICATION
+                ============================================== -->
+
+                <div
+                    id="certAdmin"
+                    class="admin-section"
+                >
+
+                    <div class="admin-toolbar">
+
+                        <h3>
+                            Certifications
+                        </h3>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="addCertification()"
+                        >
+                            + Add
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="certAdminList"
+                        class="admin-list"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     SKILLS
+                ============================================== -->
+
+                <div
+                    id="skillsAdmin"
+                    class="admin-section"
+                >
+
+                    <div class="admin-toolbar">
+
+                        <h3>
+                            Skills
+                        </h3>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="addSkill()"
+                        >
+                            + Add Skill
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="skillsAdminList"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     PROJECTS
+                ============================================== -->
+
+                <div
+                    id="projectsAdmin"
+                    class="admin-section"
+                >
+
+                    <div class="admin-toolbar">
+
+                        <h3>
+                            Project Portfolio
+                        </h3>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="addProject()"
+                        >
+                            + Add Project
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="projectsAdminList"
+                        class="admin-list"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     SOCIAL MEDIA
+                ============================================== -->
+
+                <div
+                    id="socialAdmin"
+                    class="admin-section"
+                >
+
+                    <div class="admin-toolbar">
+
+                        <h3>
+                            Social Media
+                        </h3>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="addSocial()"
+                        >
+                            + Add
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="socialAdminList"
+                        class="admin-list"
+                    ></div>
+
+                </div>
+
+
+                <!-- =============================================
+                     SETTINGS
+                ============================================== -->
+
+                <div
+                    id="settingsAdmin"
+                    class="admin-section"
+                >
+
+                    <div class="admin-toolbar">
+
+                        <h3>
+                            Website Appearance
+                        </h3>
+
+                    </div>
+
+
+                    <div class="admin-item">
+
+                        <h4>
+                            Main Background
+                        </h4>
+
+                        <p>
+                            Background for the main website area.
+                        </p>
+
+                        <input
+                            type="file"
+                            id="mainBackgroundInput"
+                            accept="image/*"
+                            onchange="uploadBackground('main', this)"
+                        >
+
+                        <br><br>
+
+                        <img
+                            id="mainBackgroundPreview"
+                            class="preview-image"
+                            alt="Main background"
+                        >
+
+                    </div>
+
+
+                    <br>
+
+
+                    <div class="admin-item">
+
+                        <h4>
+                            Menu Background
+                        </h4>
+
+                        <p>
+                            Background for the left navigation menu.
+                        </p>
+
+                        <input
+                            type="file"
+                            id="menuBackgroundInput"
+                            accept="image/*"
+                            onchange="uploadBackground('menu', this)"
+                        >
+
+                        <br><br>
+
+                        <img
+                            id="menuBackgroundPreview"
+                            class="preview-image"
+                            alt="Menu background"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<!-- =============================================================
+     FIREBASE + APPLICATION
+============================================================== -->
+
+<script type="module">
+
+    /*
+    ================================================================
+    1. FIREBASE CONFIGURATION
+    ================================================================
+
+    Replace these values with the Firebase Web App configuration
+    from:
+
+    Firebase Console
+    → Project Settings
+    → Your Apps
+    → Web App
+    → Firebase SDK configuration
+
+    ================================================================
+    */
+
+    const firebaseConfig = {
+    apiKey: "AIzaSyDtaHRfXRqlskylRkeF4YTDw51tFQcZTSo",
+    authDomain: "steven-salim-cv-n-portofolio.firebaseapp.com",
+    databaseURL: "https://steven-salim-cv-n-portofolio-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "steven-salim-cv-n-portofolio",
+    storageBucket: "steven-salim-cv-n-portofolio.firebasestorage.app",
+    messagingSenderId: "607676915812",
+    appId: "1:607676915812:web:448a41bc13f76398db3f71"
+    };
+
+    const CLOUDINARY_CLOUD_NAME = "smhz2agc";
+
+    const CLOUDINARY_UPLOAD_PRESET = "steven_portfolio_upload";
+
+    /*
+    ================================================================
+     FIREBASE IMPORTS
+    ================================================================
+    */
+
+    import {
+        initializeApp
+    } from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+    import {
+        getAuth,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut
+    } from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+    import {
+        getDatabase,
+        ref,
+        get,
+        set,
+        push,
+        update,
+        remove,
+        onValue
+    } from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+
+
+    /*
+    ================================================================
+     INITIALIZE FIREBASE
+    ================================================================
+    */
+
+    let app;
+    let auth;
+    let db;
+
+    try {
+
+        app = initializeApp(firebaseConfig);
+
+        auth = getAuth(app);
+
+        db = getDatabase(app);
+
+        console.log("Firebase initialized.");
+
+    } catch (error) {
+
+        console.error(
+            "Firebase initialization error:",
+            error
+        );
+
+    }
+
+
+    /*
+    ================================================================
+     GLOBAL DATA
+    ================================================================
+    */
+
+    let DATA = {
+
+        profile: {
+
+            name: "Steven Salim",
+
+            location: "Cengkareng, Jakarta Barat, Indonesia",
+
+            phone: "(+62)895331910370",
+
+            email: "vincentius.stevens.s@gmail.com",
+
+            about:
+                "Graduate of the Automotive and Robotic Engineering program at BINUS ASO School of Engineering, specializing in Robotic Engineering. Possesses hands-on experience in robotics, automation systems, and programming through academic and project-based activities. In addition to engineering competencies, has supporting skills in visual design and data analysis that contribute to effective project development and problem-solving. Able to integrate technical and creative approaches to deliver practical, efficient, and application-oriented solutions.",
+
+            profileImage: ""
+        },
+
+        socialMedia: {},
+
+        workExperience: {},
+
+        organizationExperience: {},
+
+        education: {},
+
+        certifications: {},
+
+        skills: {
+
+            technical: {},
+
+            nonTechnical: {},
+
+            language: {}
+
+        },
+
+        projects: {},
+
+        settings: {
+
+            mainBackground: "",
+
+            menuBackground: ""
+
+        }
+
+    };
+
+
+    /*
+    ================================================================
+     DEMO DATA
+    ================================================================
+    */
+
+    function createDemoData() {
+
+        return {
+
+            ...DATA,
+
+            workExperience: {
+
+                demo1: {
+
+                    company:
+                        "Graha Teknomedika (GTM)",
+
+                    position:
+                        "Smart Autoclave Project",
+
+                    startMonth:
+                        "Jan",
+
+                    startYear:
+                        "2026",
+
+                    endMonth:
+                        "",
+
+                    endYear:
+                        "",
+
+                    current:
+                        true,
+
+                    bulletPoints: [
+
+                        "Developed a prototype of a B-Class steam autoclave based on literature studies of its operating principles and a progressive development approach, without conducting reverse engineering.",
+
+                        "Continued the development of the autoclave project by refining the existing prototype with the objective of improving its design, reliability, and manufacturability for potential mass production."
+
+                    ]
+
+                },
+
+                demo2: {
+
+                    company:
+                        "BINUS ASO School of Engineering",
+
+                    position:
+                        "Digital System - Laboratory Assistant",
+
+                    startMonth:
+                        "Jan",
+
+                    startYear:
+                        "2026",
+
+                    endMonth:
+                        "Jun",
+
+                    endYear:
+                        "2026",
+
+                    current:
+                        false,
+
+                    bulletPoints: [
+
+                        "Designed and developed teaching materials on VHDL concepts and their real-world implementations for undergraduate students.",
+
+                        "Conducted interactive presentations and learning sessions that promoted active participation, discussion, and continuous student engagement during each class."
+
+                    ]
+
+                },
+
+                demo3: {
+
+                    company:
+                        "BINUS ASO School of Engineering",
+
+                    position:
+                        "Research Assistant",
+
+                    startMonth:
+                        "Jun",
+
+                    startYear:
+                        "2025",
+
+                    endMonth:
+                        "Jan",
+
+                    endYear:
+                        "2026",
+
+                    current:
+                        false,
+
+                    bulletPoints: [
+
+                        "Developed a fuzzy-logic-based smart blind prototype to automatically control blinds, ventilation, and lighting using indoor/outdoor temperature and brightness data against predefined target conditions."
+
+                    ]
+
+                },
+
+                demo4: {
+
+                    company:
+                        "Toyota Motor Manufacturing Indonesia (TMMIN)",
+
+                    position:
+                        "Quality Control",
+
+                    startMonth:
+                        "Jan",
+
+                    startYear:
+                        "2025",
+
+                    endMonth:
+                        "Jun",
+
+                    endYear:
+                        "2025",
+
+                    current:
+                        false,
+
+                    bulletPoints: [
+
+                        "Improved machine learning detection accuracy and enhanced features of an engine inspection robot on the production line to increase inspection reliability and operational performance.",
+
+                        "Developed a digitalized Quality Control web platform for real-time issue reporting and work-status tracking, replacing manual processes and improving monitoring efficiency."
+
+                    ]
+
+                }
+
+            },
+
+
+            organizationExperience: {
+
+                demo1: {
+
+                    organization:
+                        "BASE CORE",
+
+                    position:
+                        "Original Concept, Secretary, and Media",
+
+                    startMonth:
+                        "Jun",
+
+                    startYear:
+                        "2023",
+
+                    endMonth:
+                        "Jun",
+
+                    endYear:
+                        "2024",
+
+                    current:
+                        false,
+
+                    bulletPoints: [
+
+                        "Served as one of the founding members involved in the establishment of the BASE CORE organization.",
+
+                        "Conducted periodic data collection and monitoring of each division's activities, analyzed participation levels, and used the results to support monthly activity scheduling based on performance targets.",
+
+                        "Designed and developed the organization's visual assets, including logos, presentation decks, posters, user guides, and other supporting communication materials."
+
+                    ]
+
+                },
+
+                demo2: {
+
+                    organization:
+                        "DETEKTIF",
+
+                    position:
+                        "Co-leader - Desain Teknologi Kreatif",
+
+                    startMonth:
+                        "Aug",
+
+                    startYear:
+                        "2019",
+
+                    endMonth:
+                        "Jun",
+
+                    endYear:
+                        "2022",
+
+                    current:
+                        false,
+
+                    bulletPoints: [
+
+                        "Initiated a digital transformation strategy during the COVID-19 pandemic to maintain organizational continuity and member engagement through digital platforms for coordination, documentation, and activity execution.",
+
+                        "Demonstrated initiative in researching competitor opportunities and actively participated in various competitions as an organizational representative, particularly in areas related to skill development and achievement enhancement."
+
+                    ]
+
+                }
+
+            },
+
+
+            education: {
+
+                demo1: {
+
+                    institution:
+                        "BINUS ASO School of Engineering, BINUS University",
+
+                    degree:
+                        "S1 Automotive and Robotic Engineering",
+
+                    startMonth:
+                        "Sep",
+
+                    startYear:
+                        "2022",
+
+                    endMonth:
+                        "",
+
+                    endYear:
+                        "",
+
+                    current:
+                        true,
+
+                    gpa:
+                        "3.87 / 4.00"
+
+                }
+
+            },
+
+
+            skills: {
+
+                technical: {
+
+                    s1: {
+                        name: "Python",
+                        level: "Intermediate"
+                    },
+
+                    s2: {
+                        name: "MATLAB",
+                        level: "Intermediate"
+                    },
+
+                    s3: {
+                        name: "C/C++",
+                        level: "Beginner"
+                    },
+
+                    s4: {
+                        name: "Arduino IDE",
+                        level: "Intermediate"
+                    },
+
+                    s5: {
+                        name: "Java",
+                        level: "Beginner"
+                    },
+
+                    s6: {
+                        name: "SolidWorks",
+                        level: "Intermediate"
+                    },
+
+                    s7: {
+                        name: "Microsoft Excel",
+                        level: "Intermediate"
+                    },
+
+                    s8: {
+                        name: "Visual Design",
+                        level: "Intermediate"
+                    },
+
+                    s9: {
+                        name: "Sketching",
+                        level: "Intermediate"
+                    }
+
+                },
+
+                nonTechnical: {
+
+                    s1: {
+                        name: "High Adaptability",
+                        level: "Fluent"
+                    },
+
+                    s2: {
+                        name: "Teamwork",
+                        level: "Fluent"
+                    },
+
+                    s3: {
+                        name: "Lifelong Learning",
+                        level: "Fluent"
+                    },
+
+                    s4: {
+                        name: "Exploring",
+                        level: "Intermediate"
+                    },
+
+                    s5: {
+                        name: "Teaching",
+                        level: "Intermediate"
+                    },
+
+                    s6: {
+                        name: "Critical & Creative Thinking",
+                        level: "Intermediate"
+                    },
+
+                    s7: {
+                        name: "Multitasking",
+                        level: "Intermediate"
+                    }
+
+                },
+
+                language: {
+
+                    s1: {
+                        name: "Indonesian",
+                        level: "Fluent"
+                    },
+
+                    s2: {
+                        name: "English",
+                        level: "Intermediate"
+                    },
+
+                    s3: {
+                        name: "Japanese",
+                        level: "Learning"
+                    }
+
+                }
+
+            },
+
+            certifications: {
+
+                c1: {
+
+                    title:
+                        "BINUS Professional Development Program",
+
+                    issuer:
+                        "BINUS University",
+
+                    month:
+                        "",
+
+                    year:
+                        "2026",
+
+                    imageUrl:
+                        ""
+
+                },
+
+                c2: {
+
+                    title:
+                        "Machine Learning for Beginners",
+
+                    issuer:
+                        "Dicoding Indonesia",
+
+                    month:
+                        "",
+
+                    year:
+                        "2026",
+
+                    imageUrl:
+                        ""
+
+                },
+
+                c3: {
+
+                    title:
+                        "Artificial Intelligence Beginners Guide",
+
+                    issuer:
+                        "Dicoding Indonesia",
+
+                    month:
+                        "",
+
+                    year:
+                        "2026",
+
+                    imageUrl:
+                        ""
+
+                }
+
+            },
+
+            projects: {}
+
+        };
+
+    }
+
+
+    /*
+    ================================================================
+     LOAD DATABASE
+    ================================================================
+    */
+
+    async function loadDatabase() {
+
+        if (!db) {
+
+            DATA = createDemoData();
+
+            renderAll();
+
+            showToast(
+                "Firebase is not configured. Showing demo data.",
+                "error"
+            );
+
+            return;
+
+        }
+
+        try {
+
+            const snapshot =
+                await get(ref(db, "/"));
+
+            if (snapshot.exists()) {
+
+                const firebaseData =
+                    snapshot.val();
+
+                DATA = mergeData(
+                    DATA,
+                    firebaseData
+                );
+
+            } else {
+
+                /*
+                First setup only.
+                We don't automatically write demo data to Firebase.
+                */
+
+                DATA =
+                    createDemoData();
+
+            }
+
+            renderAll();
+
+        } catch (error) {
+
+            console.error(error);
+
+            DATA =
+                createDemoData();
+
+            renderAll();
+
+            showToast(
+                "Unable to load Firebase data.",
+                "error"
+            );
+
+        }
+
+    }
+
+
+    function mergeData(base, incoming) {
+
+        return {
+
+            profile:
+                incoming.profile || base.profile,
+
+            socialMedia:
+                incoming.socialMedia || base.socialMedia,
+
+            workExperience:
+                incoming.workExperience ||
+                base.workExperience,
+
+            organizationExperience:
+                incoming.organizationExperience ||
+                base.organizationExperience,
+
+            education:
+                incoming.education ||
+                base.education,
+
+            certifications:
+                incoming.certifications ||
+                base.certifications,
+
+            skills: {
+
+                technical:
+                    incoming.skills?.technical ||
+                    base.skills.technical,
+
+                nonTechnical:
+                    incoming.skills?.nonTechnical ||
+                    base.skills.nonTechnical,
+
+                language:
+                    incoming.skills?.language ||
+                    base.skills.language
+
+            },
+
+            projects:
+                incoming.projects ||
+                base.projects,
+
+            settings: {
+
+                mainBackground:
+                    incoming.settings?.mainBackground ||
+                    base.settings.mainBackground,
+
+                menuBackground:
+                    incoming.settings?.menuBackground ||
+                    base.settings.menuBackground
+
+            }
+
+        };
+
+    }
+
+
+    /*
+    ================================================================
+     SAVE FIREBASE
+    ================================================================
+    */
+
+    async function savePath(path, data) {
+
+        if (!db) {
+
+            showToast(
+                "Firebase has not been configured yet.",
+                "error"
+            );
+
+            return false;
+
+        }
+
+        try {
+
+            await set(
+                ref(db, path),
+                data
+            );
+
+            return true;
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                error.message,
+                "error"
+            );
+
+            return false;
+
+        }
+
+    }
+
+
+    /*
+    ================================================================
+     NAVIGATION
+    ================================================================
+    */
+
+    window.showPage = function(pageId, button) {
+
+        document
+            .querySelectorAll(".page-section")
+            .forEach(section => {
+
+                section.classList.remove("active");
+
+            });
+
+        const target =
+            document.getElementById(pageId);
+
+        if (target) {
+
+            target.classList.add("active");
+
+        }
+
+        document
+            .querySelectorAll(".nav-button")
+            .forEach(btn => {
+
+                btn.classList.remove("active");
+
+            });
+
+        if (button) {
+
+            button.classList.add("active");
+
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    };
+
+
+    /*
+    ================================================================
+     ADMIN OPEN
+    ================================================================
+    */
+
+    window.openAdminOrLogin = function() {
+
+        if (!auth) {
+
+            openLogin();
+
+            return;
+
+        }
+
+        if (auth.currentUser) {
+
+            showAdmin();
+
+        } else {
+
+            openLogin();
+
+        }
+
+    };
+
+
+    function openLogin() {
+
+        document
+            .getElementById("loginOverlay")
+            .classList.add("active");
+
+        document
+            .getElementById("loginUsername")
+            .focus();
+
+    }
+
+
+    window.closeLogin = function() {
+
+        document
+            .getElementById("loginOverlay")
+            .classList.remove("active");
+
+        document
+            .getElementById("loginError")
+            .style.display = "none";
+
+    };
+
+
+    /*
+    ================================================================
+     ADMIN LOGIN
+    ================================================================
+    */
+
+    window.adminLogin = async function() {
+
+        const username =
+            document
+                .getElementById("loginUsername")
+                .value
+                .trim();
+
+        const password =
+            document
+                .getElementById("loginPassword")
+                .value;
+
+        const errorBox =
+            document
+                .getElementById("loginError");
+
+
+        if (!username || !password) {
+
+            errorBox.innerText =
+                "Please enter username and password.";
+
+            errorBox.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        /*
+        Username is internally mapped to an
+        email-style Firebase Authentication identifier.
+        */
+
+        const ADMIN_EMAIL = "666horror.fm@gmail.com";
+
+        const email = ADMIN_EMAIL;
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            closeLogin();
+
+            showAdmin();
+
+            showToast(
+                "Login successful.",
+                "success"
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+            errorBox.innerText =
+                "Login failed. Please check your username/password.";
+
+            errorBox.style.display =
+                "block";
+
+        }
+
+    };
+
+
+    /*
+    ================================================================
+     AUTH STATE
+    ================================================================
+    */
+
+    if (auth) {
+
+        onAuthStateChanged(
+            auth,
+            user => {
+
+                if (user) {
+
+                    console.log(
+                        "Admin signed in:",
+                        user.email
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /*
+    ================================================================
+     SHOW / HIDE ADMIN
+    ================================================================
+    */
+
+    function showAdmin() {
+
+        document
+            .getElementById("publicPanel")
+            .classList.add("hidden");
+
+        document
+            .getElementById("adminPanel")
+            .classList.add("active");
+
+        renderAdmin();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    function hideAdmin() {
+
+        document
+            .getElementById("adminPanel")
+            .classList.remove("active");
+
+        document
+            .getElementById("publicPanel")
+            .classList.remove("hidden");
+
+        showPage(
+            "cvPage",
+            document.querySelector(
+                '[data-page="cvPage"]'
+            )
+        );
+
+    }
+
+
+    /*
+    ================================================================
+     LOGOUT
+    ================================================================
+    */
+
+    window.logoutAdmin = async function() {
+
+        if (!auth) {
+
+            hideAdmin();
+
+            return;
+
+        }
+
+        try {
+
+            await signOut(auth);
+
+            hideAdmin();
+
+            showToast(
+                "Logged out.",
+                "success"
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    };
+
+
+    /*
+    ================================================================
+     ADMIN TABS
+    ================================================================
+    */
+
+    window.showAdminSection = function(sectionId, button) {
+
+        document
+            .querySelectorAll(".admin-section")
+            .forEach(section => {
+
+                section.classList.remove("active");
+
+            });
+
+        document
+            .getElementById(sectionId)
+            .classList.add("active");
+
+        document
+            .querySelectorAll(".admin-tab")
+            .forEach(tab => {
+
+                tab.classList.remove("active");
+
+            });
+
+        button.classList.add("active");
+
+    };
+
+
+    /*
+    ================================================================
+     DATE FORMAT
+    ================================================================
+    */
+
+    function formatDate(item) {
+
+        if (!item) return "";
+
+        const start = [
+
+            item.startMonth,
+
+            item.startYear
+
+        ].filter(Boolean).join(" ");
+
+
+        const end = item.current
+            ? "Present"
+            : [
+
+                item.endMonth,
+
+                item.endYear
+
+            ].filter(Boolean).join(" ");
+
+
+        if (start && end) {
+
+            return `${start} – ${end}`;
+
+        }
+
+        return start || end || "";
+
+    }
+
+
+    /*
+    ================================================================
+     RENDER ALL
+    ================================================================
+    */
+
+    function renderAll() {
+
+        renderProfile();
+
+        renderWork();
+
+        renderOrganization();
+
+        renderEducation();
+
+        renderSkills();
+
+        renderProjects();
+
+        renderCertifications();
+
+        renderSocialMedia();
+
+        renderSettings();
+
+        renderAdmin();
+
+    }
+
+
+    /*
+    ================================================================
+     PROFILE PUBLIC
+    ================================================================
+    */
+
+    function renderProfile() {
+
+        const profile =
+            DATA.profile || {};
+
+        document
+            .getElementById("publicAbout")
+            .innerText =
+            profile.about || "";
+
+
+        document
+            .getElementById("contactName")
+            .innerText =
+            profile.name || "";
+
+
+        document
+            .getElementById("contactLocation")
+            .innerText =
+            profile.location || "";
+
+
+        const email =
+            document.getElementById(
+                "contactEmail"
+            );
+
+        email.innerText =
+            profile.email || "";
+
+        email.href =
+            profile.email
+                ? `mailto:${profile.email}`
+                : "#";
+
+
+        const phone =
+            document.getElementById(
+                "contactPhone"
+            );
+
+        phone.innerText =
+            profile.phone || "";
+
+        phone.href =
+            profile.phone
+                ? `tel:${profile.phone.replace(/[^0-9+]/g, "")}`
+                : "#";
+
+
+        const img =
+            document.getElementById(
+                "publicProfileImage"
+            );
+
+        img.src =
+            profile.profileImage ||
+            createProfilePlaceholder();
+
+    }
+
+
+    function createProfilePlaceholder() {
+
+        return "data:image/svg+xml;charset=UTF-8," +
+            encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="400"
+                     height="400"
+                     viewBox="0 0 400 400">
+
+                    <rect width="400"
+                          height="400"
+                          fill="#dfeaf4"/>
+
+                    <circle cx="200"
+                            cy="145"
+                            r="72"
+                            fill="#a6c2db"/>
+
+                    <path
+                        d="M95 340
+                           C105 265 145 230 200 230
+                           C255 230 295 265 305 340Z"
+                        fill="#91aec6"/>
+
+                    <text
+                        x="200"
+                        y="380"
+                        text-anchor="middle"
+                        font-family="Arial"
+                        font-size="18"
+                        fill="#46647e">
+                        PROFILE
+                    </text>
+
+                </svg>
+            `);
+
+    }
+
+
+    /*
+    ================================================================
+     WORK PUBLIC
+    ================================================================
+    */
+
+    function renderWork() {
+
+        const container =
+            document.getElementById(
+                "publicWork"
+            );
+
+        const entries =
+            Object.values(
+                DATA.workExperience || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    No work experience added yet.
+                 </div>`;
+
+            return;
+
+        }
+
+        container.innerHTML =
+            entries.map(item => {
+
+                const bullets =
+                    Array.isArray(item.bulletPoints)
+                        ? item.bulletPoints
+                        : [];
+
+                return `
+
+                    <div class="cv-entry">
+
+                        <div class="cv-entry-head">
+
+                            <div class="cv-entry-title">
+                                ${escapeHtml(item.position || "")},
+                                ${escapeHtml(item.company || "")}
+                            </div>
+
+                            <div class="cv-entry-date">
+                                ${escapeHtml(formatDate(item))}
+                            </div>
+
+                        </div>
+
+                        <ul>
+
+                            ${bullets.map(
+                                b =>
+                                `<li>${escapeHtml(b)}</li>`
+                            ).join("")}
+
+                        </ul>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     ORGANIZATION PUBLIC
+    ================================================================
+    */
+
+    function renderOrganization() {
+
+        const container =
+            document.getElementById(
+                "publicOrganization"
+            );
+
+        const entries =
+            Object.values(
+                DATA.organizationExperience || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    No organization experience added yet.
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            entries.map(item => {
+
+                const bullets =
+                    Array.isArray(item.bulletPoints)
+                        ? item.bulletPoints
+                        : [];
+
+                return `
+
+                    <div class="cv-entry">
+
+                        <div class="cv-entry-head">
+
+                            <div class="cv-entry-title">
+                                ${escapeHtml(item.position || "")}
+                                -
+                                ${escapeHtml(item.organization || "")}
+                            </div>
+
+                            <div class="cv-entry-date">
+                                ${escapeHtml(formatDate(item))}
+                            </div>
+
+                        </div>
+
+                        <ul>
+
+                            ${bullets.map(
+                                b =>
+                                `<li>${escapeHtml(b)}</li>`
+                            ).join("")}
+
+                        </ul>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     EDUCATION PUBLIC
+    ================================================================
+    */
+
+    function renderEducation() {
+
+        const container =
+            document.getElementById(
+                "publicEducation"
+            );
+
+        const entries =
+            Object.values(
+                DATA.education || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    No education added yet.
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            entries.map(item => {
+
+                const date =
+                    formatDate(item);
+
+                return `
+
+                    <div class="education-card">
+
+                        <strong>
+                            ${escapeHtml(item.institution || "")}
+                        </strong>
+
+                        <div>
+                            ${escapeHtml(item.degree || "")}
+                        </div>
+
+                        <div>
+                            ${escapeHtml(date)}
+                        </div>
+
+                        <div>
+                            GPA:
+                            ${escapeHtml(item.gpa || "-")}
+                        </div>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     SKILLS PUBLIC
+    ================================================================
+    */
+
+    function renderSkills() {
+
+        const container =
+            document.getElementById(
+                "publicSkills"
+            );
+
+        const groups = [
+
+            [
+                "TECHNICAL SKILLS",
+                DATA.skills?.technical || {}
+            ],
+
+            [
+                "NON-TECHNICAL SKILLS",
+                DATA.skills?.nonTechnical || {}
+            ],
+
+            [
+                "LANGUAGE",
+                DATA.skills?.language || {}
+            ]
+
+        ];
+
+
+        container.innerHTML =
+            groups.map(
+                ([title, items]) => {
+
+                    const arr =
+                        Object.values(items);
+
+                    if (!arr.length)
+                        return "";
+
+                    return `
+
+                        <div class="skills-group">
+
+                            <h4>
+                                ${escapeHtml(title)}
+                            </h4>
+
+                            <div class="skill-list">
+
+                                ${arr.map(
+                                    item =>
+                                    `<div class="skill-pill">
+                                        ${escapeHtml(item.name || "")}
+                                        <span>
+                                            (${escapeHtml(item.level || "")})
+                                        </span>
+                                    </div>`
+                                ).join("")}
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     PROJECTS PUBLIC
+    ================================================================
+    */
+
+    function renderProjects() {
+
+        const container =
+            document.getElementById(
+                "publicProjects"
+            );
+
+        const entries =
+            Object.values(
+                DATA.projects || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state" style="grid-column:1/-1;">
+                    No projects have been added yet.
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            entries.map(item => {
+
+                const image =
+                    item.images &&
+                    item.images.length
+                        ? item.images[0]
+                        : createProjectPlaceholder();
+
+
+                const tools =
+                    normalizeArray(
+                        item.toolsUsed
+                    );
+
+
+                const skills =
+                    normalizeArray(
+                        item.skillsUsed
+                    );
+
+
+                const date =
+                    formatDate(item);
+
+
+                return `
+
+                    <article class="project-card">
+
+                        <div class="project-image">
+
+                            <img
+                                src="${escapeAttr(image)}"
+                                alt="${escapeAttr(item.title || "Project")}"
+                            >
+
+                        </div>
+
+                        <div class="project-body">
+
+                            ${
+                                item.category
+                                ?
+                                `<div class="project-category">
+                                    ${escapeHtml(item.category)}
+                                 </div>`
+                                : ""
+                            }
+
+                            <h2 class="project-title">
+                                ${escapeHtml(item.title || "")}
+                            </h2>
+
+                            <div class="project-date">
+                                ${escapeHtml(date)}
+                            </div>
+
+
+                            ${
+                                item.description
+                                ?
+                                `
+                                <h4>Description</h4>
+                                <p>
+                                    ${escapeHtml(item.description)}
+                                </p>
+                                `
+                                : ""
+                            }
+
+
+                            ${
+                                item.problem
+                                ?
+                                `
+                                <h4>Problem</h4>
+                                <p>
+                                    ${escapeHtml(item.problem)}
+                                </p>
+                                `
+                                : ""
+                            }
+
+
+                            ${
+                                item.solution
+                                ?
+                                `
+                                <h4>Solution</h4>
+                                <p>
+                                    ${escapeHtml(item.solution)}
+                                </p>
+                                `
+                                : ""
+                            }
+
+
+                            ${
+                                item.result
+                                ?
+                                `
+                                <h4>Result</h4>
+                                <p>
+                                    ${escapeHtml(item.result)}
+                                </p>
+                                `
+                                : ""
+                            }
+
+
+                            ${
+                                tools.length
+                                ?
+                                `
+                                <h4>Tools Used</h4>
+                                <div class="tag-wrap">
+                                    ${tools.map(
+                                        t =>
+                                        `<span class="tag">${escapeHtml(t)}</span>`
+                                    ).join("")}
+                                </div>
+                                `
+                                : ""
+                            }
+
+
+                            ${
+                                skills.length
+                                ?
+                                `
+                                <h4>Skills Used</h4>
+                                <div class="tag-wrap">
+                                    ${skills.map(
+                                        t =>
+                                        `<span class="tag">${escapeHtml(t)}</span>`
+                                    ).join("")}
+                                </div>
+                                `
+                                : ""
+                            }
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            }).join("");
+
+    }
+
+
+    function createProjectPlaceholder() {
+
+        return "data:image/svg+xml;charset=UTF-8," +
+            encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="800"
+                     height="500">
+
+                    <rect width="800"
+                          height="500"
+                          fill="#e8eef5"/>
+
+                    <rect x="110"
+                          y="100"
+                          width="580"
+                          height="300"
+                          rx="20"
+                          fill="#c9d7e5"/>
+
+                    <text
+                        x="400"
+                        y="260"
+                        text-anchor="middle"
+                        font-family="Arial"
+                        font-size="42"
+                        font-weight="bold"
+                        fill="#55728d">
+                        PROJECT
+                    </text>
+
+                </svg>
+            `);
+
+    }
+
+
+    /*
+    ================================================================
+     CERTIFICATIONS PUBLIC
+    ================================================================
+    */
+
+    function renderCertifications() {
+
+        const container =
+            document.getElementById(
+                "publicCertifications"
+            );
+
+        const entries =
+            Object.values(
+                DATA.certifications || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state" style="grid-column:1/-1;">
+                    No certifications added yet.
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            entries.map(item => {
+
+                const image =
+                    item.imageUrl ||
+                    createCertificatePlaceholder();
+
+                const date =
+                    [
+                        item.month,
+                        item.year
+                    ]
+                    .filter(Boolean)
+                    .join(" ");
+
+
+                return `
+
+                    <article class="cert-card">
+
+                        <div class="cert-image">
+
+                            <img
+                                src="${escapeAttr(image)}"
+                                alt="${escapeAttr(item.title || "Certificate")}"
+                            >
+
+                        </div>
+
+                        <div class="cert-body">
+
+                            <h3>
+                                ${escapeHtml(item.title || "")}
+                            </h3>
+
+                            <p>
+                                ${escapeHtml(item.issuer || "")}
+                            </p>
+
+                            ${
+                                date
+                                ?
+                                `<p>${escapeHtml(date)}</p>`
+                                : ""
+                            }
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            }).join("");
+
+    }
+
+
+    function createCertificatePlaceholder() {
+
+        return "data:image/svg+xml;charset=UTF-8," +
+            encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="800"
+                     height="500">
+
+                    <rect width="800"
+                          height="500"
+                          fill="#eef2f7"/>
+
+                    <rect x="95"
+                          y="85"
+                          width="610"
+                          height="330"
+                          rx="15"
+                          fill="#d6dee8"/>
+
+                    <text
+                        x="400"
+                        y="265"
+                        text-anchor="middle"
+                        font-family="Arial"
+                        font-size="40"
+                        font-weight="bold"
+                        fill="#607b96">
+                        CERTIFICATE
+                    </text>
+
+                </svg>
+            `);
+
+    }
+
+
+    /*
+    ================================================================
+     SOCIAL MEDIA
+    ================================================================
+    */
+
+    function renderSocialMedia() {
+
+        const container =
+            document.getElementById(
+                "publicSocialMedia"
+            );
+
+        const entries =
+            Object.values(
+                DATA.socialMedia || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state"
+                      style="grid-column:1/-1;">
+                    No social media added yet.
+                 </div>`;
+
+            return;
+
+        }
+
+        container.innerHTML =
+            entries.map(item => {
+
+                return `
+
+                    <div class="contact-card">
+
+                        <strong>
+                            ${escapeHtml(item.platform || "")}
+                        </strong>
+
+                        <a
+                            href="${escapeAttr(item.url || "#")}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            ${escapeHtml(item.url || "")}
+                        </a>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     SETTINGS / BACKGROUNDS
+    ================================================================
+    */
+
+    function renderSettings() {
+
+        const mainBg =
+            DATA.settings?.mainBackground ||
+            "";
+
+        const menuBg =
+            DATA.settings?.menuBackground ||
+            "";
+
+
+        if (mainBg) {
+
+            document.body.style.backgroundImage =
+                `
+                linear-gradient(
+                    rgba(255,255,255,.78),
+                    rgba(255,255,255,.78)
+                ),
+                url("${mainBg}")
+                `;
+
+            document.body.classList.add(
+                "has-main-background"
+            );
+
+        } else {
+
+            document.body.style.backgroundImage =
+                "";
+
+            document.body.classList.remove(
+                "has-main-background"
+            );
+
+        }
+
+
+        if (menuBg) {
+
+            document
+                .getElementById("sidebar")
+                .style.backgroundImage =
+                `
+                linear-gradient(
+                    rgba(0, 78, 160, .70),
+                    rgba(0, 78, 160, .83)
+                ),
+                url("${menuBg}")
+                `;
+
+            document
+                .getElementById("sidebar")
+                .classList.add(
+                    "has-menu-background"
+                );
+
+            document.body.classList.add(
+                "has-menu-background"
+            );
+
+        } else {
+
+            document
+                .getElementById("sidebar")
+                .style.backgroundImage =
+                "";
+
+            document
+                .getElementById("sidebar")
+                .classList.remove(
+                    "has-menu-background"
+                );
+
+            document.body.classList.remove(
+                "has-menu-background"
+            );
+
+        }
+
+    }
+
+
+    /*
+    ================================================================
+     ADMIN RENDER
+    ================================================================
+    */
+
+    function renderAdmin() {
+
+        renderProfileAdmin();
+
+        renderWorkAdmin();
+
+        renderOrganizationAdmin();
+
+        renderEducationAdmin();
+
+        renderCertAdmin();
+
+        renderSkillsAdmin();
+
+        renderProjectsAdmin();
+
+        renderSocialAdmin();
+
+        renderSettingsAdmin();
+
+    }
+
+
+    /*
+    ================================================================
+     PROFILE ADMIN
+    ================================================================
+    */
+
+    function renderProfileAdmin() {
+
+        const p =
+            DATA.profile || {};
+
+        document.getElementById(
+            "profileAdminPreview"
+        ).innerHTML = `
+
+            <div class="admin-item-head">
+
+                <div>
+
+                    <h4>
+                        ${escapeHtml(p.name || "")}
+                    </h4>
+
+                    <small>
+                        ${escapeHtml(p.location || "")}
+                    </small>
+
+                    <p style="margin-top:8px; line-height:1.5;">
+                        ${escapeHtml(p.about || "")}
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <img
+                        src="${escapeAttr(
+                            p.profileImage ||
+                            createProfilePlaceholder()
+                        )}"
+                        style="
+                            width:90px;
+                            height:90px;
+                            object-fit:cover;
+                            border-radius:50%;
+                        "
+                    >
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /*
+    ================================================================
+     WORK ADMIN
+    ================================================================
+    */
+
+    function renderWorkAdmin() {
+
+        const container =
+            document.getElementById(
+                "workAdminList"
+            );
+
+        const entries =
+            Object.entries(
+                DATA.workExperience || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    No work experience.
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            entries.map(
+                ([id, item]) => {
+
+                    return `
+
+                        <div class="admin-item">
+
+                            <div class="admin-item-head">
+
+                                <div>
+
+                                    <h4>
+                                        ${escapeHtml(item.position || "")}
+                                    </h4>
+
+                                    <small>
+                                        ${escapeHtml(item.company || "")}
+                                        ·
+                                        ${escapeHtml(formatDate(item))}
+                                    </small>
+
+                                </div>
+
+
+                                <div class="admin-actions">
+
+                                    <button
+                                        class="btn btn-secondary"
+                                        onclick="editWork('${id}')"
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        class="btn btn-danger"
+                                        onclick="deleteItem('workExperience','${id}')"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     ORGANIZATION ADMIN
+    ================================================================
+    */
+
+    function renderOrganizationAdmin() {
+
+        const container =
+            document.getElementById(
+                "organizationAdminList"
+            );
+
+        const entries =
+            Object.entries(
+                DATA.organizationExperience || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    No organization experience.
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            entries.map(
+                ([id, item]) => {
+
+                    return `
+
+                        <div class="admin-item">
+
+                            <div class="admin-item-head">
+
+                                <div>
+
+                                    <h4>
+                                        ${escapeHtml(item.position || "")}
+                                    </h4>
+
+                                    <small>
+                                        ${escapeHtml(item.organization || "")}
+                                        ·
+                                        ${escapeHtml(formatDate(item))}
+                                    </small>
+
+                                </div>
+
+                                <div class="admin-actions">
+
+                                    <button
+                                        class="btn btn-secondary"
+                                        onclick="editOrganization('${id}')"
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        class="btn btn-danger"
+                                        onclick="deleteItem('organizationExperience','${id}')"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     EDUCATION ADMIN
+    ================================================================
+    */
+
+    function renderEducationAdmin() {
+
+        const container =
+            document.getElementById(
+                "educationAdminList"
+            );
+
+        const entries =
+            Object.entries(
+                DATA.education || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    No education.
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            entries.map(
+                ([id, item]) => {
+
+                    return `
+
+                        <div class="admin-item">
+
+                            <div class="admin-item-head">
+
+                                <div>
+
+                                    <h4>
+                                        ${escapeHtml(item.degree || "")}
+                                    </h4>
+
+                                    <small>
+                                        ${escapeHtml(item.institution || "")}
+                                        ·
+                                        ${escapeHtml(formatDate(item))}
+                                        · GPA:
+                                        ${escapeHtml(item.gpa || "-")}
+                                    </small>
+
+                                </div>
+
+                                <div class="admin-actions">
+
+                                    <button
+                                        class="btn btn-secondary"
+                                        onclick="editEducation('${id}')"
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        class="btn btn-danger"
+                                        onclick="deleteItem('education','${id}')"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     CERT ADMIN
+    ================================================================
+    */
+
+    function renderCertAdmin() {
+
+        const container =
+            document.getElementById(
+                "certAdminList"
+            );
+
+        const entries =
+            Object.entries(
+                DATA.certifications || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    No certifications.
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            entries.map(
+                ([id, item]) => {
+
+                    return `
+
+                        <div class="admin-item">
+
+                            <div class="admin-item-head">
+
+                                <div>
+
+                                    <h4>
+                                        ${escapeHtml(item.title || "")}
+                                    </h4>
+
+                                    <small>
+                                        ${escapeHtml(item.issuer || "")}
+                                        ·
+                                        ${escapeHtml(
+                                            [
+                                                item.month,
+                                                item.year
+                                            ]
+                                            .filter(Boolean)
+                                            .join(" ")
+                                        )}
+                                    </small>
+
+                                </div>
+
+                                <div class="admin-actions">
+
+                                    <button
+                                        class="btn btn-secondary"
+                                        onclick="editCertification('${id}')"
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        class="btn btn-danger"
+                                        onclick="deleteItem('certifications','${id}')"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     SKILLS ADMIN
+    ================================================================
+    */
+
+    function renderSkillsAdmin() {
+
+        const container =
+            document.getElementById(
+                "skillsAdminList"
+            );
+
+        const groups = [
+
+            ["Technical", "technical"],
+
+            ["Non-Technical", "nonTechnical"],
+
+            ["Language", "language"]
+
+        ];
+
+
+        container.innerHTML =
+            groups.map(
+                ([title, key]) => {
+
+                    const items =
+                        Object.entries(
+                            DATA.skills?.[key] || {}
+                        );
+
+
+                    return `
+
+                        <div class="admin-item"
+                             style="margin-bottom:12px;">
+
+                            <div class="admin-toolbar">
+
+                                <h4>
+                                    ${escapeHtml(title)}
+                                </h4>
+
+                                <button
+                                    class="btn btn-primary"
+                                    onclick="addSkill('${key}')"
+                                >
+                                    + Add
+                                </button>
+
+                            </div>
+
+                            <div class="admin-list">
+
+                                ${
+                                    items.length
+                                    ?
+                                    items.map(
+                                        ([id, item]) =>
+                                        `
+                                        <div
+                                            style="
+                                                border:1px solid #e5e8ec;
+                                                padding:8px;
+                                                border-radius:7px;
+                                                display:flex;
+                                                justify-content:space-between;
+                                                gap:8px;
+                                            "
+                                        >
+
+                                            <div>
+                                                <strong>
+                                                    ${escapeHtml(item.name || "")}
+                                                </strong>
+
+                                                <small>
+                                                    ${escapeHtml(item.level || "")}
+                                                </small>
+                                            </div>
+
+                                            <div class="admin-actions">
+
+                                                <button
+                                                    class="btn btn-secondary"
+                                                    onclick="editSkill('${key}','${id}')"
+                                                >
+                                                    Edit
+                                                </button>
+
+                                                <button
+                                                    class="btn btn-danger"
+                                                    onclick="deleteSkill('${key}','${id}')"
+                                                >
+                                                    Delete
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+                                        `
+                                    ).join("")
+                                    :
+                                    `<div class="empty-state">
+                                        No skills in this group.
+                                     </div>`
+                                }
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     PROJECT ADMIN
+    ================================================================
+    */
+
+    function renderProjectsAdmin() {
+
+        const container =
+            document.getElementById(
+                "projectsAdminList"
+            );
+
+        const entries =
+            Object.entries(
+                DATA.projects || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    No projects.
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            entries.map(
+                ([id, item]) => {
+
+                    return `
+
+                        <div class="admin-item">
+
+                            <div class="admin-item-head">
+
+                                <div>
+
+                                    <h4>
+                                        ${escapeHtml(item.title || "")}
+                                    </h4>
+
+                                    <small>
+                                        ${escapeHtml(item.category || "")}
+                                        ·
+                                        ${escapeHtml(formatDate(item))}
+                                    </small>
+
+                                </div>
+
+                                <div class="admin-actions">
+
+                                    <button
+                                        class="btn btn-secondary"
+                                        onclick="editProject('${id}')"
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        class="btn btn-danger"
+                                        onclick="deleteItem('projects','${id}')"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     SOCIAL ADMIN
+    ================================================================
+    */
+
+    function renderSocialAdmin() {
+
+        const container =
+            document.getElementById(
+                "socialAdminList"
+            );
+
+        const entries =
+            Object.entries(
+                DATA.socialMedia || {}
+            );
+
+        if (!entries.length) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    No social media.
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            entries.map(
+                ([id, item]) => {
+
+                    return `
+
+                        <div class="admin-item">
+
+                            <div class="admin-item-head">
+
+                                <div>
+
+                                    <h4>
+                                        ${escapeHtml(item.platform || "")}
+                                    </h4>
+
+                                    <small>
+                                        ${escapeHtml(item.url || "")}
+                                    </small>
+
+                                </div>
+
+                                <div class="admin-actions">
+
+                                    <button
+                                        class="btn btn-secondary"
+                                        onclick="editSocial('${id}')"
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        class="btn btn-danger"
+                                        onclick="deleteItem('socialMedia','${id}')"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    /*
+    ================================================================
+     SETTINGS ADMIN
+    ================================================================
+    */
+
+    function renderSettingsAdmin() {
+
+        const mainPreview =
+            document.getElementById(
+                "mainBackgroundPreview"
+            );
+
+        const menuPreview =
+            document.getElementById(
+                "menuBackgroundPreview"
+            );
+
+
+        if (DATA.settings?.mainBackground) {
+
+            mainPreview.src =
+                DATA.settings.mainBackground;
+
+            mainPreview.style.display =
+                "block";
+
+        }
+
+
+        if (DATA.settings?.menuBackground) {
+
+            menuPreview.src =
+                DATA.settings.menuBackground;
+
+            menuPreview.style.display =
+                "block";
+
+        }
+
+    }
+
+
+    /*
+    ================================================================
+     PROFILE MODAL
+    ================================================================
+    */
+
+    window.editProfile = function() {
+
+        const p =
+            DATA.profile || {};
+
+
+        openModal(
+            "Edit Profile",
+            `
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input
+                            id="f_name"
+                            value="${escapeAttr(p.name || "")}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input
+                            id="f_location"
+                            value="${escapeAttr(p.location || "")}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input
+                            id="f_phone"
+                            value="${escapeAttr(p.phone || "")}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input
+                            id="f_email"
+                            type="email"
+                            value="${escapeAttr(p.email || "")}"
+                        >
+                    </div>
+
+
+                    <div class="form-group full">
+                        <label>About Me</label>
+
+                        <textarea id="f_about">
+${escapeHtml(p.about || "")}
+                        </textarea>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Profile Picture
+                        </label>
+
+                        <input
+                            id="f_profileImage"
+                            type="file"
+                            accept="image/*"
+                        >
+
+                        <img
+                            id="f_profilePreview"
+                            class="preview-image"
+                            src="${escapeAttr(
+                                p.profileImage ||
+                                createProfilePlaceholder()
+                            )}"
+                            style="display:block;"
+                        >
+
+                    </div>
+
+                </div>
+
+            `,
+            async () => {
+
+                const file =
+                    document
+                        .getElementById(
+                            "f_profileImage"
+                        )
+                        .files[0];
+
+
+                let profileImage =
+                    p.profileImage || "";
+
+
+                if (file) {
+
+                    profileImage =
+                        await uploadFile(
+                            file,
+                            "profile"
+                        );
+
+                }
+
+
+                DATA.profile = {
+
+                    name:
+                        document.getElementById(
+                            "f_name"
+                        ).value.trim(),
+
+                    location:
+                        document.getElementById(
+                            "f_location"
+                        ).value.trim(),
+
+                    phone:
+                        document.getElementById(
+                            "f_phone"
+                        ).value.trim(),
+
+                    email:
+                        document.getElementById(
+                            "f_email"
+                        ).value.trim(),
+
+                    about:
+                        document.getElementById(
+                            "f_about"
+                        ).value.trim(),
+
+                    profileImage
+
+                };
+
+
+                const success =
+                    await savePath(
+                        "profile",
+                        DATA.profile
+                    );
+
+
+                if (success) {
+
+                    closeModal();
+
+                    renderAll();
+
+                    showToast(
+                        "Profile saved.",
+                        "success"
+                    );
+
+                }
+
+            }
+        );
+
+    };
+
+
+    /*
+    ================================================================
+     WORK MODAL
+    ================================================================
+    */
+
+    window.addWork = function() {
+
+        editWork(null);
+
+    };
+
+
+    window.editWork = function(id) {
+
+        const item =
+            id
+                ? DATA.workExperience[id]
+                : {
+
+                    company: "",
+                    position: "",
+                    startMonth: "",
+                    startYear: "",
+                    endMonth: "",
+                    endYear: "",
+                    current: false,
+                    bulletPoints: []
+
+                };
+
+
+        openModal(
+            id
+                ? "Edit Work Experience"
+                : "Add Work Experience",
+
+            experienceFormHTML(
+                item,
+                "work"
+            ),
+
+            async () => {
+
+                const data =
+                    readExperienceForm(
+                        "work"
+                    );
+
+
+                const targetId =
+                    id || generateLocalId();
+
+
+                DATA.workExperience[targetId] =
+                    data;
+
+
+                const success =
+                    await savePath(
+                        "workExperience/" + targetId,
+                        data
+                    );
+
+
+                if (success) {
+
+                    closeModal();
+
+                    renderAll();
+
+                    showToast(
+                        "Work experience saved.",
+                        "success"
+                    );
+
+                }
+
+            }
+        );
+
+    };
+
+
+    /*
+    ================================================================
+     ORGANIZATION
+    ================================================================
+    */
+
+    window.addOrganization = function() {
+
+        editOrganization(null);
+
+    };
+
+
+    window.editOrganization = function(id) {
+
+        const item =
+            id
+                ? DATA.organizationExperience[id]
+                : {
+
+                    organization: "",
+                    position: "",
+                    startMonth: "",
+                    startYear: "",
+                    endMonth: "",
+                    endYear: "",
+                    current: false,
+                    bulletPoints: []
+
+                };
+
+
+        openModal(
+            id
+                ? "Edit Organization Experience"
+                : "Add Organization Experience",
+
+            experienceFormHTML(
+                item,
+                "organization"
+            ),
+
+            async () => {
+
+                const data =
+                    readExperienceForm(
+                        "organization"
+                    );
+
+
+                const targetId =
+                    id || generateLocalId();
+
+
+                DATA.organizationExperience[targetId] =
+                    data;
+
+
+                const success =
+                    await savePath(
+                        "organizationExperience/" +
+                        targetId,
+                        data
+                    );
+
+
+                if (success) {
+
+                    closeModal();
+
+                    renderAll();
+
+                    showToast(
+                        "Organization experience saved.",
+                        "success"
+                    );
+
+                }
+
+            }
+        );
+
+    };
+
+
+    function experienceFormHTML(item, type) {
+
+        return `
+
+            <div class="form-grid">
+
+                ${
+                    type === "work"
+                    ?
+                    `
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input
+                            id="f_company"
+                            value="${escapeAttr(item.company || "")}"
+                        >
+                    </div>
+                    `
+                    :
+                    `
+                    <div class="form-group">
+                        <label>Organization</label>
+                        <input
+                            id="f_organization"
+                            value="${escapeAttr(item.organization || "")}"
+                        >
+                    </div>
+                    `
+                }
+
+
+                <div class="form-group">
+                    <label>Position</label>
+                    <input
+                        id="f_position"
+                        value="${escapeAttr(item.position || "")}"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>Start Month</label>
+                    <input
+                        id="f_startMonth"
+                        value="${escapeAttr(item.startMonth || "")}"
+                        placeholder="Jan"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>Start Year</label>
+                    <input
+                        id="f_startYear"
+                        value="${escapeAttr(item.startYear || "")}"
+                        placeholder="2026"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>End Month</label>
+                    <input
+                        id="f_endMonth"
+                        value="${escapeAttr(item.endMonth || "")}"
+                        placeholder="Jun"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>End Year</label>
+                    <input
+                        id="f_endYear"
+                        value="${escapeAttr(item.endYear || "")}"
+                        placeholder="2026"
+                    >
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="f_current"
+                            ${item.current ? "checked" : ""}
+                            style="width:auto;"
+                        >
+                        Current / Present
+                    </label>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Bullet Points
+                    </label>
+
+                    <textarea
+                        id="f_bullets"
+                        placeholder="One bullet point per line..."
+                    >${escapeHtml(
+                        Array.isArray(item.bulletPoints)
+                        ? item.bulletPoints.join("\n")
+                        : ""
+                    )}</textarea>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function readExperienceForm(type) {
+
+        const result = {
+
+            position:
+                document.getElementById(
+                    "f_position"
+                ).value.trim(),
+
+            startMonth:
+                document.getElementById(
+                    "f_startMonth"
+                ).value.trim(),
+
+            startYear:
+                document.getElementById(
+                    "f_startYear"
+                ).value.trim(),
+
+            endMonth:
+                document.getElementById(
+                    "f_endMonth"
+                ).value.trim(),
+
+            endYear:
+                document.getElementById(
+                    "f_endYear"
+                ).value.trim(),
+
+            current:
+                document.getElementById(
+                    "f_current"
+                ).checked,
+
+            bulletPoints:
+                document
+                    .getElementById(
+                        "f_bullets"
+                    )
+                    .value
+                    .split("\n")
+                    .map(x => x.trim())
+                    .filter(Boolean)
+
+        };
+
+
+        if (type === "work") {
+
+            result.company =
+                document
+                    .getElementById(
+                        "f_company"
+                    )
+                    .value.trim();
+
+        } else {
+
+            result.organization =
+                document
+                    .getElementById(
+                        "f_organization"
+                    )
+                    .value.trim();
+
+        }
+
+
+        return result;
+
+    }
+
+
+    /*
+    ================================================================
+     EDUCATION
+    ================================================================
+    */
+
+    window.addEducation = function() {
+
+        editEducation(null);
+
+    };
+
+
+    window.editEducation = function(id) {
+
+        const item =
+            id
+                ? DATA.education[id]
+                : {
+
+                    institution: "",
+                    degree: "",
+                    startMonth: "",
+                    startYear: "",
+                    endMonth: "",
+                    endYear: "",
+                    current: false,
+                    gpa: ""
+
+                };
+
+
+        openModal(
+            id
+                ? "Edit Education"
+                : "Add Education",
+
+            `
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+                        <label>Institution</label>
+                        <input
+                            id="f_institution"
+                            value="${escapeAttr(
+                                item.institution || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group full">
+                        <label>Degree / Program</label>
+                        <input
+                            id="f_degree"
+                            value="${escapeAttr(
+                                item.degree || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Start Month</label>
+                        <input
+                            id="f_startMonth"
+                            value="${escapeAttr(
+                                item.startMonth || ""
+                            )}"
+                            placeholder="Sep"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Start Year</label>
+                        <input
+                            id="f_startYear"
+                            value="${escapeAttr(
+                                item.startYear || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>End Month</label>
+                        <input
+                            id="f_endMonth"
+                            value="${escapeAttr(
+                                item.endMonth || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>End Year</label>
+                        <input
+                            id="f_endYear"
+                            value="${escapeAttr(
+                                item.endYear || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="f_current"
+                                ${item.current ? "checked" : ""}
+                                style="width:auto;"
+                            >
+                            Current / Present
+                        </label>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>GPA</label>
+                        <input
+                            id="f_gpa"
+                            value="${escapeAttr(
+                                item.gpa || ""
+                            )}"
+                            placeholder="3.87 / 4.00"
+                        >
+                    </div>
+
+                </div>
+
+            `,
+
+            async () => {
+
+                const targetId =
+                    id || generateLocalId();
+
+
+                const data = {
+
+                    institution:
+                        document.getElementById(
+                            "f_institution"
+                        ).value.trim(),
+
+                    degree:
+                        document.getElementById(
+                            "f_degree"
+                        ).value.trim(),
+
+                    startMonth:
+                        document.getElementById(
+                            "f_startMonth"
+                        ).value.trim(),
+
+                    startYear:
+                        document.getElementById(
+                            "f_startYear"
+                        ).value.trim(),
+
+                    endMonth:
+                        document.getElementById(
+                            "f_endMonth"
+                        ).value.trim(),
+
+                    endYear:
+                        document.getElementById(
+                            "f_endYear"
+                        ).value.trim(),
+
+                    current:
+                        document.getElementById(
+                            "f_current"
+                        ).checked,
+
+                    gpa:
+                        document.getElementById(
+                            "f_gpa"
+                        ).value.trim()
+
+                };
+
+
+                DATA.education[targetId] =
+                    data;
+
+
+                const success =
+                    await savePath(
+                        "education/" +
+                        targetId,
+                        data
+                    );
+
+
+                if (success) {
+
+                    closeModal();
+
+                    renderAll();
+
+                    showToast(
+                        "Education saved.",
+                        "success"
+                    );
+
+                }
+
+            }
+        );
+
+    };
+
+
+    /*
+    ================================================================
+     CERTIFICATION
+    ================================================================
+    */
+
+    window.addCertification = function() {
+
+        editCertification(null);
+
+    };
+
+
+    window.editCertification = function(id) {
+
+        const item =
+            id
+                ? DATA.certifications[id]
+                : {
+
+                    title: "",
+                    issuer: "",
+                    month: "",
+                    year: "",
+                    imageUrl: ""
+
+                };
+
+
+        openModal(
+            id
+                ? "Edit Certification"
+                : "Add Certification",
+
+            `
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+                        <label>Certificate Name / Title</label>
+                        <input
+                            id="f_title"
+                            value="${escapeAttr(
+                                item.title || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Issuer</label>
+                        <input
+                            id="f_issuer"
+                            value="${escapeAttr(
+                                item.issuer || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Month</label>
+                        <input
+                            id="f_month"
+                            value="${escapeAttr(
+                                item.month || ""
+                            )}"
+                            placeholder="Jun"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Year</label>
+                        <input
+                            id="f_year"
+                            value="${escapeAttr(
+                                item.year || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Certificate Image
+                        </label>
+
+                        <input
+                            id="f_certificateImage"
+                            type="file"
+                            accept="image/*"
+                        >
+
+                        <img
+                            id="f_certificatePreview"
+                            class="preview-image"
+                            src="${escapeAttr(
+                                item.imageUrl ||
+                                createCertificatePlaceholder()
+                            )}"
+                            style="display:block;"
+                        >
+
+                    </div>
+
+                </div>
+
+            `,
+
+            async () => {
+
+                const file =
+                    document
+                        .getElementById(
+                            "f_certificateImage"
+                        )
+                        .files[0];
+
+
+                let imageUrl =
+                    item.imageUrl || "";
+
+
+                if (file) {
+
+                    imageUrl =
+                        await uploadFile(
+                            file,
+                            "certificates"
+                        );
+
+                }
+
+
+                const targetId =
+                    id || generateLocalId();
+
+
+                const data = {
+
+                    title:
+                        document.getElementById(
+                            "f_title"
+                        ).value.trim(),
+
+                    issuer:
+                        document.getElementById(
+                            "f_issuer"
+                        ).value.trim(),
+
+                    month:
+                        document.getElementById(
+                            "f_month"
+                        ).value.trim(),
+
+                    year:
+                        document.getElementById(
+                            "f_year"
+                        ).value.trim(),
+
+                    imageUrl
+
+                };
+
+
+                DATA.certifications[targetId] =
+                    data;
+
+
+                const success =
+                    await savePath(
+                        "certifications/" +
+                        targetId,
+                        data
+                    );
+
+
+                if (success) {
+
+                    closeModal();
+
+                    renderAll();
+
+                    showToast(
+                        "Certification saved.",
+                        "success"
+                    );
+
+                }
+
+            }
+        );
+
+    };
+
+
+    /*
+    ================================================================
+     SKILLS
+    ================================================================
+    */
+
+    window.addSkill = function(groupKey = "technical") {
+
+        editSkill(groupKey, null);
+
+    };
+
+
+    window.editSkill = function(groupKey, id) {
+
+        const item =
+            id
+                ? DATA.skills[groupKey][id]
+                : {
+
+                    name: "",
+                    level: "Learning"
+
+                };
+
+
+        openModal(
+            id
+                ? "Edit Skill"
+                : "Add Skill",
+
+            `
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+
+                        <label>
+                            Skill Name
+                        </label>
+
+                        <input
+                            id="f_skillName"
+                            value="${escapeAttr(
+                                item.name || ""
+                            )}"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Level
+                        </label>
+
+                        <select id="f_skillLevel">
+
+                            ${skillLevels()
+                                .map(
+                                    level =>
+                                    `
+                                    <option
+                                        value="${level}"
+                                        ${
+                                            item.level === level
+                                            ? "selected"
+                                            : ""
+                                        }
+                                    >
+                                        ${level}
+                                    </option>
+                                    `
+                                ).join("")}
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            `,
+
+            async () => {
+
+                const targetId =
+                    id || generateLocalId();
+
+
+                const data = {
+
+                    name:
+                        document.getElementById(
+                            "f_skillName"
+                        ).value.trim(),
+
+                    level:
+                        document.getElementById(
+                            "f_skillLevel"
+                        ).value
+
+                };
+
+
+                if (!DATA.skills[groupKey]) {
+
+                    DATA.skills[groupKey] = {};
+
+                }
+
+
+                DATA.skills[groupKey][targetId] =
+                    data;
+
+
+                const success =
+                    await savePath(
+                        "skills/" +
+                        groupKey +
+                        "/" +
+                        targetId,
+                        data
+                    );
+
+
+                if (success) {
+
+                    closeModal();
+
+                    renderAll();
+
+                    showToast(
+                        "Skill saved.",
+                        "success"
+                    );
+
+                }
+
+            }
+        );
+
+    };
+
+
+    function skillLevels() {
+
+        return [
+
+            "Learning",
+
+            "Beginner",
+
+            "Intermediate",
+
+            "Fluent"
+
+        ];
+
+    }
+
+
+    window.deleteSkill = async function(groupKey, id) {
+
+        if (
+            !confirm(
+                "Delete this skill?"
+            )
+        ) return;
+
+
+        try {
+
+            await remove(
+                ref(
+                    db,
+                    "skills/" +
+                    groupKey +
+                    "/" +
+                    id
+                )
+            );
+
+
+            delete DATA.skills[groupKey][id];
+
+
+            renderAll();
+
+            showToast(
+                "Skill deleted.",
+                "success"
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                error.message,
+                "error"
+            );
+
+        }
+
+    };
+
+
+    /*
+    ================================================================
+     PROJECT
+    ================================================================
+    */
+
+    window.addProject = function() {
+
+        editProject(null);
+
+    };
+
+
+    window.editProject = function(id) {
+
+        const item =
+            id
+                ? DATA.projects[id]
+                : {
+
+                    title: "",
+                    category: "",
+                    startMonth: "",
+                    startYear: "",
+                    endMonth: "",
+                    endYear: "",
+                    current: false,
+                    description: "",
+                    problem: "",
+                    solution: "",
+                    result: "",
+                    toolsUsed: [],
+                    skillsUsed: [],
+                    images: []
+
+                };
+
+
+        openModal(
+            id
+                ? "Edit Project"
+                : "Add Project",
+
+            `
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+                        <label>Project Title</label>
+                        <input
+                            id="f_projectTitle"
+                            value="${escapeAttr(
+                                item.title || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input
+                            id="f_projectCategory"
+                            value="${escapeAttr(
+                                item.category || ""
+                            )}"
+                            placeholder="Robotics / AI / Automation"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Start Month</label>
+                        <input
+                            id="f_startMonth"
+                            value="${escapeAttr(
+                                item.startMonth || ""
+                            )}"
+                            placeholder="Jan"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Start Year</label>
+                        <input
+                            id="f_startYear"
+                            value="${escapeAttr(
+                                item.startYear || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>End Month</label>
+                        <input
+                            id="f_endMonth"
+                            value="${escapeAttr(
+                                item.endMonth || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>End Year</label>
+                        <input
+                            id="f_endYear"
+                            value="${escapeAttr(
+                                item.endYear || ""
+                            )}"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="f_current"
+                                ${item.current ? "checked" : ""}
+                                style="width:auto;"
+                            >
+                            Current / Present
+                        </label>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Description</label>
+
+                        <textarea
+                            id="f_description"
+                        >${escapeHtml(
+                            item.description || ""
+                        )}</textarea>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Problem</label>
+
+                        <textarea
+                            id="f_problem"
+                        >${escapeHtml(
+                            item.problem || ""
+                        )}</textarea>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Solution</label>
+
+                        <textarea
+                            id="f_solution"
+                        >${escapeHtml(
+                            item.solution || ""
+                        )}</textarea>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Result</label>
+
+                        <textarea
+                            id="f_result"
+                        >${escapeHtml(
+                            item.result || ""
+                        )}</textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Tools Used
+                        </label>
+
+                        <textarea
+                            id="f_tools"
+                            placeholder="One tool per line..."
+                        >${escapeHtml(
+                            normalizeArray(
+                                item.toolsUsed
+                            ).join("\n")
+                        )}</textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Skills Used
+                        </label>
+
+                        <textarea
+                            id="f_skillsUsed"
+                            placeholder="One skill per line..."
+                        >${escapeHtml(
+                            normalizeArray(
+                                item.skillsUsed
+                            ).join("\n")
+                        )}</textarea>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Project Images
+                        </label>
+
+                        <input
+                            id="f_projectImages"
+                            type="file"
+                            accept="image/*"
+                            multiple
+                        >
+
+                        ${
+                            item.images?.length
+                            ?
+                            `
+                            <div
+                                style="
+                                    display:flex;
+                                    gap:8px;
+                                    flex-wrap:wrap;
+                                    margin-top:8px;
+                                "
+                            >
+
+                                ${item.images.map(
+                                    image =>
+                                    `
+                                    <img
+                                        src="${escapeAttr(image)}"
+                                        style="
+                                            width:120px;
+                                            height:80px;
+                                            object-fit:cover;
+                                            border-radius:6px;
+                                        "
+                                    >
+                                    `
+                                ).join("")}
+
+                            </div>
+                            `
+                            : ""
+                        }
+
+                    </div>
+
+                </div>
+
+            `,
+
+            async () => {
+
+                const files =
+                    Array.from(
+                        document
+                            .getElementById(
+                                "f_projectImages"
+                            )
+                            .files
+                    );
+
+
+                let images =
+                    Array.isArray(item.images)
+                        ? [...item.images]
+                        : [];
+
+
+                if (files.length) {
+
+                    const uploaded =
+                        await Promise.all(
+                            files.map(
+                                file =>
+                                    uploadFile(
+                                        file,
+                                        "projects"
+                                    )
+                            )
+                        );
+
+                    images =
+                        [
+                            ...images,
+                            ...uploaded
+                        ];
+
+                }
+
+
+                const targetId =
+                    id || generateLocalId();
+
+
+                const data = {
+
+                    title:
+                        document.getElementById(
+                            "f_projectTitle"
+                        ).value.trim(),
+
+                    category:
+                        document.getElementById(
+                            "f_projectCategory"
+                        ).value.trim(),
+
+                    startMonth:
+                        document.getElementById(
+                            "f_startMonth"
+                        ).value.trim(),
+
+                    startYear:
+                        document.getElementById(
+                            "f_startYear"
+                        ).value.trim(),
+
+                    endMonth:
+                        document.getElementById(
+                            "f_endMonth"
+                        ).value.trim(),
+
+                    endYear:
+                        document.getElementById(
+                            "f_endYear"
+                        ).value.trim(),
+
+                    current:
+                        document.getElementById(
+                            "f_current"
+                        ).checked,
+
+                    description:
+                        document.getElementById(
+                            "f_description"
+                        ).value.trim(),
+
+                    problem:
+                        document.getElementById(
+                            "f_problem"
+                        ).value.trim(),
+
+                    solution:
+                        document.getElementById(
+                            "f_solution"
+                        ).value.trim(),
+
+                    result:
+                        document.getElementById(
+                            "f_result"
+                        ).value.trim(),
+
+                    toolsUsed:
+                        document.getElementById(
+                            "f_tools"
+                        ).value
+                        .split("\n")
+                        .map(x => x.trim())
+                        .filter(Boolean),
+
+                    skillsUsed:
+                        document.getElementById(
+                            "f_skillsUsed"
+                        ).value
+                        .split("\n")
+                        .map(x => x.trim())
+                        .filter(Boolean),
+
+                    images
+
+                };
+
+
+                DATA.projects[targetId] =
+                    data;
+
+
+                const success =
+                    await savePath(
+                        "projects/" +
+                        targetId,
+                        data
+                    );
+
+
+                if (success) {
+
+                    closeModal();
+
+                    renderAll();
+
+                    showToast(
+                        "Project saved.",
+                        "success"
+                    );
+
+                }
+
+            }
+        );
+
+    };
+
+
+    /*
+    ================================================================
+     SOCIAL
+    ================================================================
+    */
+
+    window.addSocial = function() {
+
+        editSocial(null);
+
+    };
+
+
+    window.editSocial = function(id) {
+
+        const item =
+            id
+                ? DATA.socialMedia[id]
+                : {
+
+                    platform: "",
+                    url: ""
+
+                };
+
+
+        openModal(
+            id
+                ? "Edit Social Media"
+                : "Add Social Media",
+
+            `
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>
+                            Social Media Name
+                        </label>
+
+                        <input
+                            id="f_platform"
+                            value="${escapeAttr(
+                                item.platform || ""
+                            )}"
+                            placeholder="LinkedIn"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>
+                            Link
+                        </label>
+
+                        <input
+                            id="f_url"
+                            type="url"
+                            value="${escapeAttr(
+                                item.url || ""
+                            )}"
+                            placeholder="https://..."
+                        >
+                    </div>
+
+                </div>
+
+            `,
+
+            async () => {
+
+                const targetId =
+                    id || generateLocalId();
+
+
+                const data = {
+
+                    platform:
+                        document.getElementById(
+                            "f_platform"
+                        ).value.trim(),
+
+                    url:
+                        document.getElementById(
+                            "f_url"
+                        ).value.trim()
+
+                };
+
+
+                DATA.socialMedia[targetId] =
+                    data;
+
+
+                const success =
+                    await savePath(
+                        "socialMedia/" +
+                        targetId,
+                        data
+                    );
+
+
+                if (success) {
+
+                    closeModal();
+
+                    renderAll();
+
+                    showToast(
+                        "Social media saved.",
+                        "success"
+                    );
+
+                }
+
+            }
+        );
+
+    };
+
+
+    /*
+    ================================================================
+     DELETE
+    ================================================================
+    */
+
+    window.deleteItem = async function(
+        collection,
+        id
+    ) {
+
+        if (
+            !confirm(
+                "Are you sure you want to delete this item?"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        if (!db) {
+
+            showToast(
+                "Firebase is not configured.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            await remove(
+                ref(
+                    db,
+                    collection + "/" + id
+                )
+            );
+
+
+            if (collection === "workExperience")
+                delete DATA.workExperience[id];
+
+
+            if (collection === "organizationExperience")
+                delete DATA.organizationExperience[id];
+
+
+            if (collection === "education")
+                delete DATA.education[id];
+
+
+            if (collection === "certifications")
+                delete DATA.certifications[id];
+
+
+            if (collection === "projects")
+                delete DATA.projects[id];
+
+
+            if (collection === "socialMedia")
+                delete DATA.socialMedia[id];
+
+
+            renderAll();
+
+
+            showToast(
+                "Item deleted.",
+                "success"
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                error.message,
+                "error"
+            );
+
+        }
+
+    };
+
+
+    /*
+    ================================================================
+     FILE UPLOAD
+    ================================================================
+    */
+
+    async function uploadFile(file, folder = "general") {
+
+        if (!file) {
+            return "";
+        }
+
+
+        if (!auth || !auth.currentUser) {
+
+            throw new Error(
+                "You must be logged in as admin."
+            );
+
+        }
+
+
+        if (!file.type.startsWith("image/")) {
+
+            throw new Error(
+                "Please select an image file."
+            );
+
+        }
+
+
+        const maxSize =
+            5 * 1024 * 1024;
+
+        if (file.size > maxSize) {
+
+            throw new Error(
+                "Image is too large. Maximum size is 5 MB."
+            );
+
+        }
+
+
+        const endpoint =
+            `https://api.cloudinary.com/v1_1/` +
+            `${CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "file",
+            file
+        );
+
+
+        formData.append(
+            "upload_preset",
+            CLOUDINARY_UPLOAD_PRESET
+        );
+
+        const cleanFolder =
+            String(folder)
+                .replace(
+                    /[^a-zA-Z0-9_-]/g,
+                    ""
+                );
+
+
+        formData.append(
+            "folder",
+            `steven-portfolio/${cleanFolder}`
+        );
+
+
+        return new Promise(
+            (resolve, reject) => {
+
+                const xhr =
+                    new XMLHttpRequest();
+
+
+                xhr.open(
+                    "POST",
+                    endpoint,
+                    true
+                );
+
+                xhr.upload.onprogress =
+                    function(event) {
+
+                        if (!event.lengthComputable) {
+                            return;
+                        }
+
+
+                        const progress =
+                            Math.round(
+                                (
+                                    event.loaded /
+                                    event.total
+                                ) * 100
+                            );
+
+
+                        const saveButton =
+                            document.getElementById(
+                                "modalSaveButton"
+                            );
+
+
+                        if (saveButton) {
+
+                            saveButton.innerText =
+                                `Uploading ${progress}%`;
+
+                        }
+
+
+                        console.log(
+                            `Cloudinary upload: ${progress}%`
+                        );
+
+                    };
+
+
+                xhr.onload =
+                    function() {
+
+                        let response = null;
+
+
+                        try {
+
+                            response =
+                                JSON.parse(
+                                    xhr.responseText
+                                );
+
+                        } catch (error) {
+
+                            console.error(
+                                "Invalid Cloudinary response:",
+                                xhr.responseText
+                            );
+
+                        }
+
+
+                        if (
+                            xhr.status >= 200 &&
+                            xhr.status < 300
+                        ) {
+
+                            console.log(
+                                "Cloudinary upload successful:",
+                                response
+                            );
+
+
+                            if (
+                                response &&
+                                response.secure_url
+                            ) {
+
+                                resolve(
+                                    response.secure_url
+                                );
+
+                            } else {
+
+                                reject(
+                                    new Error(
+                                        "Cloudinary did not return an image URL."
+                                    )
+                                );
+
+                            }
+
+                        } else {
+
+                            console.error(
+                                "Cloudinary upload failed:",
+                                response
+                            );
+
+
+                            reject(
+                                new Error(
+                                    response?.error?.message ||
+                                    `Cloudinary upload failed (${xhr.status}).`
+                                )
+                            );
+
+                        }
+
+                    };
+
+                xhr.onerror =
+                    function() {
+
+                        reject(
+                            new Error(
+                                "Network error while uploading image."
+                            )
+                        );
+
+                    };
+
+                xhr.timeout = 60000;
+
+
+                xhr.ontimeout =
+                    function() {
+
+                        reject(
+                            new Error(
+                                "Upload timed out after 60 seconds."
+                            )
+                        );
+
+                    };
+
+
+                xhr.send(
+                    formData
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+    ================================================================
+     BACKGROUND UPLOAD
+    ================================================================
+    */
+
+    window.uploadBackground =
+        async function(type, input) {
+
+            const file =
+                input.files[0];
+
+            if (!file)
+                return;
+
+
+            try {
+
+                const url =
+                    await uploadFile(
+                        file,
+                        "backgrounds"
+                    );
+
+
+                if (type === "main") {
+
+                    DATA.settings.mainBackground =
+                        url;
+
+                    await savePath(
+                        "settings/mainBackground",
+                        url
+                    );
+
+                }
+
+
+                if (type === "menu") {
+
+                    DATA.settings.menuBackground =
+                        url;
+
+                    await savePath(
+                        "settings/menuBackground",
+                        url
+                    );
+
+                }
+
+
+                renderAll();
+
+                showToast(
+                    "Background updated.",
+                    "success"
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        };
+
+
+    /*
+    ================================================================
+     MODAL
+    ================================================================
+    */
+
+    function openModal(
+        title,
+        body,
+        saveCallback
+    ) {
+
+        document
+            .getElementById(
+                "modalTitle"
+            )
+            .innerText = title;
+
+
+        document
+            .getElementById(
+                "modalBody"
+            )
+            .innerHTML = body;
+
+
+        const saveButton =
+            document.getElementById(
+                "modalSaveButton"
+            );
+
+
+        saveButton.onclick =
+            async () => {
+
+                saveButton.disabled =
+                    true;
+
+                saveButton.innerText =
+                    "Saving...";
+
+
+                try {
+
+                    await saveCallback();
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    showToast(
+                        error.message,
+                        "error"
+                    );
+
+                } finally {
+
+                    saveButton.disabled =
+                        false;
+
+                    saveButton.innerText =
+                        "Save";
+
+                }
+
+            };
+
+
+        document
+            .getElementById("modal")
+            .classList.add("active");
+
+    }
+
+
+    window.closeModal = function() {
+
+        document
+            .getElementById("modal")
+            .classList.remove("active");
+
+    };
+
+
+    /*
+    ================================================================
+     DOWNLOAD / PRINT CV
+    ================================================================
+
+     The browser's Print dialog is used because the print stylesheet
+     removes the website navigation/background and formats the CV
+     as a clean A4 document.
+
+     User can select:
+     Destination → Save as PDF
+    */
+
+    window.downloadCV = function() {
+
+        // Make sure admin panel is hidden
+        document
+            .getElementById("adminPanel")
+            .classList.remove("active");
+
+
+        // Show public CV
+        document
+            .getElementById("publicPanel")
+            .classList.remove("hidden");
+
+
+        // Show CV section
+        showPage(
+            "cvPage",
+            document.querySelector(
+                '[data-page="cvPage"]'
+            )
+        );
+
+
+        // Wait until rendering is complete
+        setTimeout(() => {
+
+            window.print();
+
+        }, 300);
+
+    };
+
+
+    /*
+    ================================================================
+     TOAST
+    ================================================================
+    */
+
+    function showToast(
+        message,
+        type = ""
+    ) {
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+
+        toast.innerText =
+            message;
+
+
+        toast.className =
+            "toast show " +
+            type;
+
+
+        clearTimeout(
+            window.toastTimer
+        );
+
+
+        window.toastTimer =
+            setTimeout(
+                () => {
+
+                    toast.className =
+                        "toast";
+
+                },
+                3000
+            );
+
+    }
+
+
+    /*
+    ================================================================
+     UTILITY
+    ================================================================
+    */
+
+    function generateLocalId() {
+
+        return (
+            "id_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(36)
+                .substring(2, 8)
+        );
+
+    }
+
+
+    function normalizeArray(value) {
+
+        if (Array.isArray(value))
+            return value;
+
+
+        if (
+            value &&
+            typeof value === "object"
+        ) {
+
+            return Object.values(value);
+
+        }
+
+
+        if (
+            typeof value === "string"
+        ) {
+
+            return value
+                .split("\n")
+                .map(x => x.trim())
+                .filter(Boolean);
+
+        }
+
+
+        return [];
+
+    }
+
+
+    function escapeHtml(value) {
+
+        return String(value ?? "")
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    function escapeAttr(value) {
+
+        return escapeHtml(value);
+
+    }
+
+
+    /*
+    ================================================================
+     INITIAL LOAD
+    ================================================================
+    */
+
+    loadDatabase();
+
+</script>
+
+</body>
+</html>
