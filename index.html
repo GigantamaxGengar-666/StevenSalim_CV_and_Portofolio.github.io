@@ -2810,7 +2810,22 @@
                 password
             );
 
-            closeLogin();
+            function clearLoginFields() {
+                document.getElementById("loginUsername").value = "";
+                document.getElementById("loginPassword").value = "";
+            }
+            
+            window.closeLogin = function() {
+                document
+                    .getElementById("loginOverlay")
+                    .classList.remove("active");
+            
+                document
+                    .getElementById("loginError")
+                    .style.display = "none";
+            
+                clearLoginFields();
+            };
 
             showAdmin();
 
